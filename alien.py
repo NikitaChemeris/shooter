@@ -15,7 +15,7 @@ class Alien:
         self.y += self.speed
 
     def increase_speed(self):
-        self.y += self.speed / 2
+        self.speed += self.step / 2
 
     def reset(self):
         self.increase_speed()

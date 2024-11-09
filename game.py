@@ -10,7 +10,7 @@ class Game:
         pygame.display.set_caption(GAME_CAPTION)
         self.screen_width, self.screen_height = SCREEN_WIDTH, SCREEN_HEIGHT
         self.screen_fill_color = SCREEN_FILL_COLOR
-        self.screen = pygame.display.set_mode(self.screen_width, self.screen_height)
+        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.game_font = pygame.font.Font(None, 30)
         self.game_score = 0
 
@@ -65,7 +65,7 @@ class Game:
         self.screen.fill(self.screen_fill_color)
         self.screen.blit(self.fighter.image, (self.fighter.x, self.fighter.y))
         self.screen.blit(self.alien.image, (self.alien.x, self.alien.y))
-        if self.ball.was_fired():
+        if self.ball.was_fired:
             self.screen.blit(self.ball.image, (self.ball.x, self.ball.y))
         self.show_game_score()
         pygame.display.update()
