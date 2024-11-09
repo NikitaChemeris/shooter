@@ -25,3 +25,4 @@ class Fighter:
 
         if self.is_moving_right and self.x <= SCREEN_WIDTH - self.width - self.step:
             self.x += self.step
+
