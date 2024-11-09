@@ -28,6 +28,9 @@ class Game:
                 self.handle_key_events(event)
 
             self.update_game_state()
+            self.draw_screen()
+
+        self.show_game_over()
 
     def handle_key_events(self, event):
         if event.type == pygame.KEYDOWN:
@@ -57,3 +60,24 @@ class Game:
 
         if self.alien.has_reached_fighter(self.fighter):
             self.game_is_running = False
+
+    def draw_screen(self):
+        self.screen.fill(self.screen_fill_color)
+        self.screen.blit(self.fighter.image, (self.fighter.x, self.fighter.y))
+        self.screen.blit(self.alien.image, (self.alien.x, self.alien.y))
+        if self.ball.was_fired():
+            self.screen.blit(self.ball.image, (self.ball.x, self.ball.y))
+        self.show_game_score()
+        pygame.display.update()
+
+    def show_game_score(self):
+        game_score_text = self.game_font.render(f"Your Score is: {self.game_score}", True, 'white')
+        self.screen.blit(game_score_text, (20, 20))
+
+    def show_game_over(self):
+        game_over_text = self.game_font.render("GAME OVER", True, 'white')
+        game_over_rectangle = game_over_text.get_rect()
+        game_over_rectangle.center = (self.screen_width / 2, self.screen_height / 2)
+        self.screen.blit(game_over_text, game_over_rectangle)
+        pygame.display.update()
+        pygame.time.wait(5000)
