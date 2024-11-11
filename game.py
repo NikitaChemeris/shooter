@@ -1,19 +1,20 @@
 import pygame
 import sys
+from background import Background
 from fighter import Fighter
 from alien import Alien
 from ball import Ball
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_FILL_COLOR, GAME_CAPTION
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, GAME_CAPTION
 
 class Game:
     def __init__(self):
         pygame.display.set_caption(GAME_CAPTION)
         self.screen_width, self.screen_height = SCREEN_WIDTH, SCREEN_HEIGHT
-        self.screen_fill_color = SCREEN_FILL_COLOR
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.game_font = pygame.font.Font(None, 30)
         self.game_score = 0
 
+        self.background = Background()
         self.fighter = Fighter()
         self.alien = Alien()
         self.ball = Ball(self.fighter)
@@ -62,7 +63,7 @@ class Game:
             self.game_is_running = False
 
     def draw_screen(self):
-        self.screen.fill(self.screen_fill_color)
+        self.screen.blit(self.background.image, (0,0))
         self.screen.blit(self.fighter.image, (self.fighter.x, self.fighter.y))
         self.screen.blit(self.alien.image, (self.alien.x, self.alien.y))
         if self.ball.was_fired:
