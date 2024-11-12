@@ -14,7 +14,7 @@ class Alien:
 
     @staticmethod
     def alien_image():
-        images = [img for img in Path('images/aliens').iterdir() if img.suffix.lower() == '.png']
+        images = Path('images/aliens').iterdir()
         return pygame.image.load(str(choice(list(images)))).convert_alpha()
 
     def update_position(self):
