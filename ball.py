@@ -27,6 +27,6 @@ class Ball:
 
     def is_collision(self, alien):
         return (
-            alien.x <= self.x <= alien.x + alien.width - self.width  and
+            alien.x <= self.x <= alien.x + alien.width - self.width and
             alien.y < self.y < alien.y + alien.height - self.height
         )
